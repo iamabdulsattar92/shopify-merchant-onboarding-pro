@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { json, type ActionFunctionArgs, type LoaderFunctionArgs } from "@remix-run/node";
+import { json, redirect, type ActionFunctionArgs, type LoaderFunctionArgs } from "@remix-run/node";
 import { useFetcher, useLoaderData } from "@remix-run/react";
 import {
   Page,
@@ -27,6 +27,12 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
   const url = new URL(request.url);
   const onboardingSuccess = url.searchParams.get("onboarding") === "success";
+
+  // If no profile exists and we aren't already coming from a successful onboarding,
+  // redirect them straight to the onboarding details page.
+  if (!profile && !onboardingSuccess) {
+    return redirect("/app/onboarding");
+  }
 
   return json({ profile, onboardingSuccess });
 };
@@ -134,17 +140,6 @@ export default function Index() {
           </Banner>
         )}
         <Layout>
-          {!profile && (
-            <Layout.Section>
-              <Banner
-                title="Complete your onboarding"
-                action={{ content: 'Go to Onboarding', url: '/app/onboarding' }}
-                tone="info"
-              >
-                <p>You haven't set up your merchant profile yet. Please add your info to sync with the database.</p>
-              </Banner>
-            </Layout.Section>
-          )}
           <Layout.Section>
             <Card>
               <BlockStack gap="500">
