@@ -1,0 +1,56 @@
+# --- Dependencies & Build ---
+node_modules/
+/dist
+/build
+/app/build
+/public/build/
+/public/_dev
+/app/public/build
+/.cache
+
+# --- Secrets & Environment (CRITICAL) ---
+.env
+.env.*
+!.env.example
+
+# --- Databases (SQLite) ---
+/prisma/dev.sqlite
+/prisma/dev.sqlite-journal
+database.sqlite
+
+# --- Shopify CLI & Extensions ---
+.shopify/
+.shopify.lock
+/extensions/*/dist
+
+# --- Package Manager Locks ---
+# (Keeping these ignored as per your original file, 
+# though usually, committing one is recommended for teams)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# --- Logs & Debugging ---
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+/coverage
+/.nyc_output
+
+# --- IDEs & System Files ---
+.DS_Store
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# --- Hosting & Temp Files ---
+.fly/
+.vercel/
+tmp/
+temp/
+tsc_errors.txt

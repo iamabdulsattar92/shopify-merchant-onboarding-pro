@@ -1,0 +1,36 @@
+# This file stores configurations for your Shopify app.
+
+client_id = "4953510dfa5df4a655b154d7f2a1b3b3"
+name = "AdminPageReturnData"
+handle = "admin-page-return-data"
+application_url = "https://shopify.com"
+embedded = true
+
+[build]
+automatically_update_urls_on_dev = true
+dev_store_url = "admindetailspage.myshopify.com"
+
+[access_scopes]
+# Check out https://shopify.dev/docs/apps/tools/cli/configuration#access_scopes for more configuration options
+scopes = "write_products"
+
+[auth]
+redirect_urls = [
+  "https://shopify.com/auth/callback",
+  "https://shopify.com/auth/shopify/callback",
+  "https://shopify.com/api/auth/callback"
+]
+
+[webhooks]
+api_version = "2024-10"
+
+  [[webhooks.subscriptions]]
+  topics = [ "app/uninstalled" ]
+  uri = "/webhooks/app/uninstalled"
+
+  [[webhooks.subscriptions]]
+  topics = [ "app/scopes_update" ]
+  uri = "/webhooks/app/scopes_update"
+
+[pos]
+embedded = false
